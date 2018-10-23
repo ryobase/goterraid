@@ -1,7 +1,7 @@
-goterraid
-=========
+GO Terra ID
+===========
 
-A simple AWS Lambda Go project that generate a random UUID each time a function is executed. This project uses API Gatewa, Lambda, and DynamoDB. Terraform file is provided
+A simple AWS Lambda Go project that generate a random UUID each time a function is executed. This project uses API Gateway, Lambda, and DynamoDB. Terraform file is provided
 
 ## Getting started
 
