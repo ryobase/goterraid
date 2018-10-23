@@ -25,6 +25,11 @@ terraform plan
 terraform apply
 ```
 
+## TODO
+
+- [ ] A functionality to store and retrieve data from DynamoDB.
+- [ ] Make use of visitor number.
+
 ### Testing
 
 ``make test``
