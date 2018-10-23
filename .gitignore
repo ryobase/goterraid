@@ -1,0 +1,10 @@
+bin
+vendor
+deploy
+*.zip
+dev.tf
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
