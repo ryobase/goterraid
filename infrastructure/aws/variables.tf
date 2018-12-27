@@ -23,6 +23,13 @@ variable "s3_bucket_name" {
   default     = "GoTerraId"
 }
 
+variable "dynamodb_table_name" {
+  description = "DynamoDB table name"
+  type = "string"
+  default = "GoTerraIdTable"
+}
+
+
 variable "dynamodb_tag_name" {
   description = "DynamoDB table tag name"
   type = "string"

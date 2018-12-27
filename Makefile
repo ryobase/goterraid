@@ -8,7 +8,7 @@ GIT_DIRTY=$(shell test -n "`git status --porcelain`" && echo "+CHANGES" || true)
 BUILD_DATE=$(shell date '+%Y-%m-%d-%H:%M:%S')
 DEPLOY_NAME := "function"
 
-default: test
+default: help
 
 help:
 	@echo 'Management commands for goterraid:'
@@ -19,7 +19,7 @@ help:
 	@echo '    make compress        Compress and package binary file.'
 	@echo '    make get-deps        Runs dep ensure, mostly used for ci.'
 	@echo '    make deploy          Use Terraform to deploy to AWS.'
-	@echo '    make aws-ready       Build and create a deployable zip file.'
+	@echo '    make aws-ready       Build and create a deployable zip file. Ready for AWS deployment.'
 	
 	@echo '    make clean           Clean the directory tree.'
 	@echo '    make teardown        Clean and destroy Terraform infrastructure.'

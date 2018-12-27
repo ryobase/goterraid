@@ -107,7 +107,7 @@ resource "aws_lambda_function" "go_terra_id" {
 
   environment {
     variables = {
-      BUCKET_NAME = "${var.s3_bucket_name}"
+      TABLE_NAME = "${var.dynamodb_table_name}"
       DEBUG = "${var.debug_mode}"
     }
   }
@@ -155,6 +155,13 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   uri                     = "${aws_lambda_function.go_terra_id.invoke_arn}"
 }
 
+resource "aws_api_gateway_method_response" "200" {
+  rest_api_id = "${aws_api_gateway_rest_api.go_terra_id_api.id}"
+  resource_id = "${aws_api_gateway_resource.service.id}"
+  http_method = "${aws_api_gateway_method.method.http_method}"
+  status_code = "200"
+}
+
 resource "aws_api_gateway_deployment" "go_terra_id" {
   depends_on = [
     "aws_api_gateway_integration.lambda_integration",
@@ -168,13 +175,17 @@ resource "aws_api_gateway_deployment" "go_terra_id" {
 # DynamoDB
 # =====================================================================================
 resource "aws_dynamodb_table" "go_terra_id_table" {
-  name = "GoTerraIdTable"
-  read_capacity = 4
-  write_capacity = 4
-  hash_key = "VisitorId"
+  name = "${var.dynamodb_table_name}"
+  read_capacity = 2
+  write_capacity = 2
+  hash_key = "id"
+  range_key = "timestamp"
 
   attribute = [{
-    name = "VisitorId"
+    name = "id"
+    type = "S"
+  },{
+    name = "timestamp",
     type = "S"
   }]
 
